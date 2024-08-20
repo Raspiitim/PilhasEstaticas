@@ -42,6 +42,25 @@ public class Pilha {
 		}
 		return null;
 	}
+	
+	// Verifica se p1 tem mais elementos que p2
+    public Boolean verificaP1P2(Pilha p1, Pilha p2) {
+        return p1.size() > p2.size();
+    }
+    
+    // Verifica se duas pilhas são iguais
+    public Boolean pilhasIguais(Pilha p1, Pilha p2) {
+        if (p1.size() != p2.size()) {
+            return false;
+        }
+        for (int i = 0; i < p1.size(); i++) {
+            if (!p1.elemento[i].equals(p2.elemento[i])) {
+                return false; 
+            }
+        }
+        return true; 
+    }
+
 
 	public Object[] getElemento() {
 		return elemento;
