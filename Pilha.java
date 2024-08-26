@@ -19,6 +19,16 @@ public class Pilha {
 		return false;
 	}
 	
+	// Adiciona um elemento à pilha
+    public Boolean pushAumentaCap(Object elemento) {
+        // Verifica se a capacidade foi atingida
+        if (this.topo + 1 >= this.elemento.length) {
+            aumentarCapacidade();
+        }
+        this.elemento[++topo] = elemento;
+        return true;
+    }
+	
 	//verifica se é vazia
 	public Boolean isEmpty() {
 		return this.topo < 0;
@@ -63,16 +73,6 @@ public class Pilha {
         return true; 
     }
 
-    // Busca a posição de um elemento na pilha
-    public int buscarPosicao(Object elemento) {
-        for (int i = this.topo; i >= 0; i--) {
-            if (this.elemento[i].equals(elemento)) {
-                return this.topo - i;
-            }
-        }
-        return -1;
-    }
-
     // Aumenta a capacidade da pilha
     private void aumentarCapacidade() {
         int novaCapacidade = this.elemento.length * 2;
@@ -99,19 +99,6 @@ public class Pilha {
     	}
 	}
 	
-	//Inverte a pilha
-	public void inverterPilha() {
-    Pilha pilhaAuxiliar = new Pilha(this.size());
-
-    while (!this.isEmpty()) {
-        pilhaAuxiliar.push(this.pop());
-    }
-
-    while (!pilhaAuxiliar.isEmpty()) {
-        this.push(pilhaAuxiliar.pop());
-    	}
-	}
-	
 	//remover elemento especifico
 	public void removerElemento(Object elemento) {
     Pilha pilhaAuxiliar = new Pilha(this.size());
@@ -130,17 +117,16 @@ public class Pilha {
     	}
 	}
 	
-	//Mescla duas pilhas
-	public void mesclarPilhas(Pilha outraPilha) {
-		Pilha pilhaAuxiliar = new Pilha(outraPilha.size());
+	public void mostrarPilha() {
+	    if (this.isEmpty()) {
+	        System.out.println("A pilha está vazia.");
+	        return;
+	    }
 
-    while (!outraPilha.isEmpty()) {
-        pilhaAuxiliar.push(outraPilha.pop());
-    }
-
-    while (!pilhaAuxiliar.isEmpty()) {
-        this.push(pilhaAuxiliar.pop());
-    	}
+	    System.out.println("Conteúdo da pilha (do topo para a base):");
+	    for (int i = this.topo; i >= 0; i--) {
+	        System.out.println(this.elemento[i]);
+	    }
 	}
 
 	public Object[] getElemento() {
