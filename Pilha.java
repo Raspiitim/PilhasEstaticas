@@ -1,3 +1,5 @@
+package teste;
+
 public class Pilha {
 	private Object elemento[];
 	private int topo;
@@ -61,62 +63,61 @@ public class Pilha {
         return true; 
     }
 
+    //duplica elementos da pilha
 	public void duplicarElementos() {
     int tamanhoAtual = size();
-    if (tamanhoAtual == 0) return; // Se a pilha está vazia, nada a duplicar.
+    if (tamanhoAtual == 0) return;
 
-    // Aumentar a capacidade se necessário
     if (this.topo + tamanhoAtual >= this.elemento.length) {
         Object[] novoArray = new Object[this.elemento.length * 2];
         System.arraycopy(this.elemento, 0, novoArray, 0, this.elemento.length);
         this.elemento = novoArray;
     }
 
-    // Duplicar os elementos
     for (int i = 0; i < tamanhoAtual; i++) {
         this.push(this.elemento[i]);
-    }
-}
+    	}
+	}
+	
+	//Inverte a pilha
 	public void inverterPilha() {
-    PilhaEstatica pilhaAuxiliar = new PilhaEstatica(this.size());
+    Pilha pilhaAuxiliar = new Pilha(this.size());
 
-    // Desempilhar todos os elementos na pilha auxiliar
     while (!this.isEmpty()) {
         pilhaAuxiliar.push(this.pop());
     }
 
-    // Copiar de volta para a pilha original
     while (!pilhaAuxiliar.isEmpty()) {
         this.push(pilhaAuxiliar.pop());
-    }
-}
+    	}
+	}
+	
+	//remover elemento especifico
 	public void removerElemento(Object elemento) {
-    PilhaEstatica pilhaAuxiliar = new PilhaEstatica(this.size());
+    Pilha pilhaAuxiliar = new Pilha(this.size());
 
-    // Transferir elementos para a pilha auxiliar até encontrar o elemento a remover
     while (!this.isEmpty()) {
         Object topoElemento = this.pop();
         if (!topoElemento.equals(elemento)) {
             pilhaAuxiliar.push(topoElemento);
         } else {
-            break; // Remove apenas a primeira ocorrência
+            break;
         }
     }
 
-    // Transferir de volta para a pilha original
     while (!pilhaAuxiliar.isEmpty()) {
         this.push(pilhaAuxiliar.pop());
-    }
-}
-	public void mesclarPilhas(PilhaEstatica outraPilha) {
-    PilhaEstatica pilhaAuxiliar = new PilhaEstatica(outraPilha.size());
+    	}
+	}
+	
+	//Mescla duas pilhas
+	public void mesclarPilhas(Pilha outraPilha) {
+		Pilha pilhaAuxiliar = new Pilha(outraPilha.size());
 
-    // Transferir elementos de outraPilha para a pilha auxiliar (invertendo a ordem)
     while (!outraPilha.isEmpty()) {
         pilhaAuxiliar.push(outraPilha.pop());
     }
 
-    // Adicionar elementos da pilha auxiliar ao topo da pilha atual
     while (!pilhaAuxiliar.isEmpty()) {
         this.push(pilhaAuxiliar.pop());
     }
