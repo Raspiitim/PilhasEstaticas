@@ -75,12 +75,12 @@ public class Pilha {
 
     // Aumenta a capacidade da pilha
     private void aumentarCapacidade() {
-        int novaCapacidade = this.elemento.length * 2; // Nova capacidade é o dobro da atual
+        int novaCapacidade = this.elemento.length * 2;
         Object[] novoArray = new Object[novaCapacidade];
         for (int i = 0; i < this.elemento.length; i++) {
             novoArray[i] = this.elemento[i];
         }
-        this.elemento = novoArray; // Substitui o array antigo pelo novo
+        this.elemento = novoArray;
     }
 	
     //duplica elementos da pilha
@@ -140,8 +140,8 @@ public class Pilha {
 
     while (!pilhaAuxiliar.isEmpty()) {
         this.push(pilhaAuxiliar.pop());
-    }
-}
+    	}
+	}
 
 	public Object[] getElemento() {
 		return elemento;
