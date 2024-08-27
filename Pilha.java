@@ -129,6 +129,36 @@ public class Pilha {
 	    }
 	}
 
+	// Intercala duas pilhas em uma nova pilha
+    public static Pilha intercalar(Pilha p1, Pilha p2) {
+        int novaCapacidade = p1.size() + p2.size();
+        Pilha novaPilha = new Pilha(novaCapacidade);
+
+        // Usamos duas pilhas auxiliares para manter o conceito LIFO
+        Pilha aux1 = new Pilha(p1.size());
+        Pilha aux2 = new Pilha(p2.size());
+
+        // Transferir elementos das pilhas originais para as pilhas auxiliares
+        while (!p1.isEmpty()) {
+            aux1.push(p1.pop());
+        }
+        while (!p2.isEmpty()) {
+            aux2.push(p2.pop());
+        }
+
+        // Intercalar os elementos das pilhas auxiliares na nova pilha
+        while (!aux1.isEmpty() || !aux2.isEmpty()) {
+            if (!aux1.isEmpty()) {
+                novaPilha.push(aux1.pop());
+            }
+            if (!aux2.isEmpty()) {
+                novaPilha.push(aux2.pop());
+            }
+        }
+
+        return novaPilha;
+    }
+
 	public Object[] getElemento() {
 		return elemento;
 	}
